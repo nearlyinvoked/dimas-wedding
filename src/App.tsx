@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import "./index.css";
 import supabase from "./utils/supabase";
 import { SouvenirsTable } from "./components/souvenirs-table";
 import type { Database } from "./utils/database.types";
@@ -17,7 +17,8 @@ function App() {
         setLoading(true);
         const { data: souvenirs, error } = await supabase
           .from("souvenirs")
-          .select("*");
+          .select("*")
+          .order("id", { ascending: true });
 
         if (error) throw error;
 
